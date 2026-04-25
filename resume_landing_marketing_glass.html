@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ковшарев Роман — Resume Glass</title>
+  <style>
+    :root {
+      --bg-start: #0b1326;
+      --bg-mid: #1b1f4a;
+      --bg-end: #5b2f7e;
+      --surface: rgba(255,255,255,0.10);
+      --surface-strong: rgba(255,255,255,0.18);
+      --border: rgba(255,255,255,0.24);
+      --text: #f8fbff;
+      --muted: #c9d4ea;
+      --accent: #7dd3fc;
+      --accent-2: #a7f3d0;
+      --danger: #fb7185;
+      --radius: 16px;
+      --radius-lg: 24px;
+      --shadow: 0 18px 50px rgba(7, 12, 30, .35);
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 18%, rgba(125, 211, 252, .25), transparent 35%),
+        radial-gradient(circle at 82% 12%, rgba(167, 243, 208, .20), transparent 35%),
+        radial-gradient(circle at 78% 80%, rgba(251, 113, 133, .18), transparent 40%),
+        linear-gradient(135deg, var(--bg-start), var(--bg-mid) 46%, var(--bg-end));
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .container { width: min(calc(100% - 28px), var(--max)); margin: 0 auto; }
+
+    .glass {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .glass-strong {
+      background: var(--surface-strong);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(28px);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .top {
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      margin: 10px 0 16px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .top .badge {
+      font-size: 12px;
+      color: #eaf4ff;
+      border: 1px solid rgba(125, 211, 252, .45);
+      background: rgba(125, 211, 252, .16);
+      border-radius: 999px;
+      padding: 6px 10px;
+      white-space: nowrap;
+    }
+
+    main { padding-bottom: 22px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .hero-left, .hero-right { padding: 22px; }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -0.4px;
+    }
+
+    .lead { margin: 0; color: var(--muted); }
+
+    .nav-links {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(125, 211, 252, .46);
+      background: rgba(125, 211, 252, .14);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    .pill:hover { transform: translateY(-1px); }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .stat {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+    }
+
+    .stat strong { display: block; font-size: 24px; }
+    .stat span { color: var(--muted); font-size: 12px; }
+
+    section { margin-bottom: 14px; }
+
+    .section-box { padding: 20px; }
+    .title { margin: 0 0 12px; font-size: 23px; }
+
+    .sites {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .site {
+      text-decoration: none;
+      color: #ecf7ff;
+      text-align: center;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(167, 243, 208, .5);
+      background: rgba(167, 243, 208, .12);
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .site:hover { transform: translateY(-2px); }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .timeline li {
+      padding: 10px 12px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      background: rgba(255,255,255,.07);
+      color: #edf3ff;
+    }
+
+    .skills { display: grid; gap: 10px; }
+    .skill .head { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px; }
+    .line { height: 10px; background: rgba(255,255,255,.16); border-radius: 999px; overflow: hidden; }
+    .line span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width 1s cubic-bezier(.22, 1, .36, 1); }
+
+    .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+    .kpi { padding: 12px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); }
+    .kpi b { font-size: 22px; display: block; }
+    .kpi span { color: var(--muted); font-size: 12px; }
+
+    .eff-wrap { display: grid; gap: 12px; }
+    .eff-head {
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .eff-head b { font-size: 22px; }
+    .eff-head p { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+    .eff-list { display: grid; gap: 10px; }
+    .eff-item {
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.2);
+    }
+    .eff-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+    .eff-row span:last-child { color: var(--muted); }
+    .meter {
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.15);
+      overflow: hidden;
+    }
+    .meter > i {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 1s cubic-bezier(.22, 1, .36, 1);
+    }
+    .eff-note {
+      margin: 0;
+      color: #e7eefc;
+      font-size: 13px;
+      border-left: 2px solid rgba(125,211,252,.65);
+      padding-left: 10px;
+    }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(125, 211, 252, .5);
+      background: rgba(125, 211, 252, .12);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .tag.active { background: rgba(125, 211, 252, .24); }
+
+    .ai-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .ai-card {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+      transition: .16s ease;
+    }
+    .ai-card h4 { margin: 0 0 4px; }
+    .ai-card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .ai-card.hide { opacity: 0; pointer-events: none; height: 0; overflow: hidden; padding: 0; border: 0; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .contact-card {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(125, 211, 252, .16), rgba(167, 243, 208, .10));
+      border: 1px solid rgba(125, 211, 252, .35);
+      box-shadow: 0 10px 24px rgba(7, 12, 30, .22);
+    }
+
+    .contact-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .2px;
+      text-transform: uppercase;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.28);
+      background: rgba(255,255,255,.10);
+      color: #f7fcff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.16);
+    }
+
+    footer { text-align: center; color: #d4ddf3; font-size: 12px; padding: 8px 0 20px; }
+
+    @media (max-width: 980px) {
+      .hero, .two, .sites, .kpis, .ai-grid, .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="top glass">
+      <strong>Web Resume • Ковшарев Роман</strong>
+      <span class="badge">B2C + B2B • Performance + AI</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <article class="hero-left glass-strong">
+          <h1>Ковшарев Роман</h1>
+          <p class="lead">
+            Маркетолог и контент-менеджер бренда Eltronic. Управляю рекламой, контентом,
+            аналитикой, дизайном и подрядчиками. Фокус: ROMI/ROI, рост продаж и AI-автоматизация.
+          </p>
+          <div class="nav-links">
+            <a class="pill" href="#competence">Компетенции</a>
+            <a class="pill" href="#infographics">Инфографика</a>
+            <a class="pill" href="#ai">AI-инструменты</a>
+            <a class="pill" href="#contact">Связаться</a>
+          </div>
+        </article>
+
+        <aside class="hero-right glass">
+          <div class="stat-grid">
+            <div class="stat"><strong data-counter="1500000">0</strong><span>₽ рекламный бюджет / месяц</span></div>
+            <div class="stat"><strong data-counter="8">0</strong><span>каналов продвижения</span></div>
+            <div class="stat"><strong data-counter="6">0</strong><span>бизнес-направлений</span></div>
+            <div class="stat"><strong data-counter="14">0</strong><span>AI практик и инструментов</span></div>
+          </div>
+        </aside>
+      </section>
+
+      <section>
+        <article class="section-box glass" id="sites">
+          <h2 class="title">Сайты с результатами моей работы</h2>
+          <div class="sites">
+            <a class="site" href="https://eltronic-ru.com" target="_blank" rel="noopener noreferrer">eltronic-ru.com</a>
+            <a class="site" href="https://eltronic.ru" target="_blank" rel="noopener noreferrer">eltronic.ru</a>
+            <a class="site" href="https://www.lider-nn.ru" target="_blank" rel="noopener noreferrer">lider-nn.ru</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="two" id="competence">
+        <article class="section-box glass">
+          <h2 class="title">Продвижение и реклама</h2>
+          <ul class="timeline">
+            <li>Управление рекламными кампаниями до 1,5 млн ₽/мес.</li>
+            <li>TG Ads, VK, Я.Директ + РСЯ, продвижение на WB/OZON.</li>
+            <li>Инфлюенс-маркетинг, медиапланирование, UTM, ORД.</li>
+            <li>Аналитика ROMI/ROI, SEO-база, SERM, Email-маркетинг.</li>
+          </ul>
+        </article>
+
+        <article class="section-box glass">
+          <h2 class="title">Контент, дизайн, подрядчики</h2>
+          <ul class="timeline">
+            <li>Контент и администрирование сайтов, VK и Telegram.</li>
+            <li>Фотосъемка товаров, обработка в Photoshop, карточки товара.</li>
+            <li>Баннеры, флаеры, упаковка, презентации, наружная реклама.</li>
+            <li>Взаимодействие с типографиями, IT и партнерами из КНР.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="two" id="infographics">
+        <article class="section-box glass">
+          <h2 class="title">Профиль компетенций</h2>
+          <div class="skills">
+            <div class="skill"><div class="head"><span>Performance-маркетинг</span><b>92%</b></div><div class="line"><span data-w="92"></span></div></div>
+            <div class="skill"><div class="head"><span>Аналитика и ROMI/ROI</span><b>90%</b></div><div class="line"><span data-w="90"></span></div></div>
+            <div class="skill"><div class="head"><span>Маркетплейсы WB/OZON</span><b>86%</b></div><div class="line"><span data-w="86"></span></div></div>
+            <div class="skill"><div class="head"><span>Контент и SMM</span><b>88%</b></div><div class="line"><span data-w="88"></span></div></div>
+            <div class="skill"><div class="head"><span>Дизайн и визуал</span><b>84%</b></div><div class="line"><span data-w="84"></span></div></div>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><b>360°</b><span>каналы продвижения</span></div>
+            <div class="kpi"><b>End-to-End</b><span>управление задачами</span></div>
+            <div class="kpi"><b>Data + AI</b><span>подход к решениям</span></div>
+          </div>
+        </article>
+
+        <article class="section-box glass">
+          <h2 class="title">Эффективность маркетинга по этапам воронки</h2>
+          <div class="eff-wrap">
+            <div class="eff-head">
+              <b>Интегральная оценка: 83 / 100</b>
+              <p>Оценка показывает баланс между охватом, конверсией в заявки и окупаемостью каналов.</p>
+            </div>
+
+            <div class="eff-list">
+              <div class="eff-item">
+                <div class="eff-row"><strong>Охват и трафик</strong><span>выполнение медиаплана: 91%</span></div>
+                <div class="meter"><i data-m="91"></i></div>
+              </div>
+              <div class="eff-item">
+                <div class="eff-row"><strong>Конверсия в лиды</strong><span>факт: 4.7% • benchmark: 4.2%</span></div>
+                <div class="meter"><i data-m="82"></i></div>
+              </div>
+              <div class="eff-item">
+                <div class="eff-row"><strong>ROMI / окупаемость</strong><span>средний ROMI: 168%</span></div>
+                <div class="meter"><i data-m="86"></i></div>
+              </div>
+              <div class="eff-item">
+                <div class="eff-row"><strong>Репутация и удержание</strong><span>SERM + отзывы: стабильный рост</span></div>
+                <div class="meter"><i data-m="79"></i></div>
+              </div>
+            </div>
+
+            <p class="eff-note">Фокус роста: ускорение A/B тестов креативов и расширение best-practice связок для TG Ads + маркетплейсов.</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="ai">
+        <article class="section-box glass">
+          <h2 class="title">AI-инструменты и автоматизация</h2>
+          <div class="filters">
+            <button class="tag active" data-f="all">Все</button>
+            <button class="tag" data-f="analytics">Аналитика</button>
+            <button class="tag" data-f="automation">Автоматизация</button>
+            <button class="tag" data-f="models">Модели</button>
+          </div>
+          <div class="ai-grid" id="aiGrid">
+            <article class="ai-card" data-c="analytics"><h4>Codex</h4><p>Глубокий анализ отчётов и подготовка презентаций.</p></article>
+            <article class="ai-card" data-c="automation"><h4>VS Code + Roo Code</h4><p>Автоматизация рутинных маркетинговых задач и расчётов.</p></article>
+            <article class="ai-card" data-c="models"><h4>ChatGPT / GigaChat / Claude</h4><p>Промпт-инженеринг и агентный подход к рабочим процессам.</p></article>
+            <article class="ai-card" data-c="automation"><h4>VPN + Proxy</h4><p>Собственный контур доступа для стабильной работы сервисов.</p></article>
+            <article class="ai-card" data-c="models"><h4>OpenClaw + VPS</h4><p>Настройка multi-agent сценариев в изолированной среде.</p></article>
+            <article class="ai-card" data-c="models"><h4>Локальные LLM</h4><p>Qwen3, Llama 3.2, DeepSeek-R1 в закрытом контуре организации.</p></article>
+          </div>
+        </article>
+      </section>
+
+      <section id="contact">
+        <article class="section-box glass">
+          <h2 class="title">Связаться</h2>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <span class="contact-label">Телефон</span>
+              <a class="contact-link" href="tel:+79040447293">📞 8-904-044-72-93</a>
+            </div>
+            <div class="contact-card">
+              <span class="contact-label">Электронная почта</span>
+              <a class="contact-link" href="mailto:kovsharev.roman@yandex.ru">✉️ kovsharev.roman@yandex.ru</a>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>Мы точно сработаемся!</footer>
+  </div>
+
+  <script>
+    const fmt = (n) => n >= 1000000 ? (n / 1000000).toLocaleString('ru-RU', { maximumFractionDigits: 1 }) + 'M' : n.toLocaleString('ru-RU');
+
+    const animate = (el, to) => {
+      const start = performance.now();
+      const dur = 1200;
+      const frame = (t) => {
+        const p = Math.min((t - start) / dur, 1);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(Math.round(to * e));
+        if (p < 1) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        document.querySelectorAll('[data-counter]').forEach((n) => {
+          if (n.dataset.done) return;
+          animate(n, Number(n.dataset.counter || 0));
+          n.dataset.done = '1';
+        });
+        document.querySelectorAll('.line span[data-w]').forEach((b) => { b.style.width = `${b.dataset.w}%`; });
+        document.querySelectorAll('.meter i[data-m]').forEach((b) => { b.style.width = `${b.dataset.m}%`; });
+        io.unobserve(en.target);
+      });
+    }, { threshold: .2 });
+
+    document.querySelectorAll('.hero-right, #infographics').forEach((el) => io.observe(el));
+
+    const tags = Array.from(document.querySelectorAll('.tag'));
+    const aiCards = Array.from(document.querySelectorAll('.ai-card[data-c]'));
+    tags.forEach((tag) => {
+      tag.addEventListener('click', () => {
+        tags.forEach((t) => t.classList.remove('active'));
+        tag.classList.add('active');
+        const f = tag.dataset.f;
+        aiCards.forEach((c) => c.classList.toggle('hide', !(f === 'all' || c.dataset.c === f)));
+      });
+    });
+  </script>
+</body>
+</html>
